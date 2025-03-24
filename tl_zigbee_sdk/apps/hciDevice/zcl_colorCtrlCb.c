@@ -1050,6 +1050,7 @@ static void sampleLight_stopMoveStepProcess(void)
  */
 status_t sampleLight_colorCtrlCb(zclIncomingAddrInfo_t *pAddrInfo, u8 cmdId, void *cmdPayload)
 {
+	led_on(GPIO_PD4);
 	if(pAddrInfo->dstEp == 1){
 		switch(cmdId){
 #if COLOR_RGB_SUPPORT
