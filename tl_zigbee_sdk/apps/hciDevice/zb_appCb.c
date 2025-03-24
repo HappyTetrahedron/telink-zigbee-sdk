@@ -55,6 +55,7 @@
 #include "sampleGateway.h"
 #if ZBHCI_EN
 #include "zbhci.h"
+#include "sampleLightCtrl.h"
 #endif
 
 /**********************************************************************

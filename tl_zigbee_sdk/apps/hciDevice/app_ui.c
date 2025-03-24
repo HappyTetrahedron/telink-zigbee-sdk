@@ -117,42 +117,6 @@ s32 zclLightTimerCb(void *arg)
 	return interval;
 }
 
-void light_blink_start(u8 times, u16 ledOnTime, u16 ledOffTime)
-{
-	u32 interval = 0;
-	g_appGwCtx.times = times;
-
-	if(!g_appGwCtx.timerLedEvt){
-		if(g_appGwCtx.oriSta){
-			light_off();
-			g_appGwCtx.sta = 0;
-			interval = ledOffTime;
-		}else{
-			light_on();
-			g_appGwCtx.sta = 1;
-			interval = ledOnTime;
-		}
-		g_appGwCtx.ledOnTime = ledOnTime;
-		g_appGwCtx.ledOffTime = ledOffTime;
-
-		g_appGwCtx.timerLedEvt = TL_ZB_TIMER_SCHEDULE(zclLightTimerCb, NULL, interval);
-	}
-}
-
-void light_blink_stop(void)
-{
-	if(g_appGwCtx.timerLedEvt){
-		TL_ZB_TIMER_CANCEL(&g_appGwCtx.timerLedEvt);
-
-		g_appGwCtx.times = 0;
-		if(g_appGwCtx.oriSta){
-			light_on();
-		}else{
-			light_off();
-		}
-	}
-}
-
 
 void buttonKeepPressed(u8 btNum){
 	if(btNum == VK_SW1){

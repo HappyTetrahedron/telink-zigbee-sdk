@@ -71,6 +71,10 @@ extern "C" {
 #define ZBHCI_USB_CDC					0
 #define ZBHCI_USB_HID					0
 
+/* RGB or CCT */
+#define COLOR_RGB_SUPPORT				1
+#define COLOR_CCT_SUPPORT				0
+
 /* BDB */
 #define TOUCHLINK_SUPPORT				1
 #define FIND_AND_BIND_SUPPORT			0
@@ -174,15 +178,14 @@ extern "C" {
 #define ZCL_ON_OFF_SUPPORT							1
 #define ZCL_LEVEL_CTRL_SUPPORT						1
 #define ZCL_LIGHT_COLOR_CONTROL_SUPPORT				1
-#define ZCL_DOOR_LOCK_SUPPORT						1
-#define ZCL_TEMPERATURE_MEASUREMENT_SUPPORT			1
+#define ZCL_DOOR_LOCK_SUPPORT						0
+#define ZCL_TEMPERATURE_MEASUREMENT_SUPPORT			0
 #define ZCL_IAS_ZONE_SUPPORT						1
 #define ZCL_POLL_CTRL_SUPPORT						1
 #define ZCL_GROUP_SUPPORT							1
 #define ZCL_SCENE_SUPPORT							1
-#define ZCL_ON_OFF_SUPPORT                          1
-#define ZCL_LEVEL_CTRL_SUPPORT                      1
-#define ZCL_LIGHT_COLOR_CONTROL_SUPPORT             1
+
+
 #define ZCL_OTA_SUPPORT								1
 
 #define AF_TEST_ENABLE								0

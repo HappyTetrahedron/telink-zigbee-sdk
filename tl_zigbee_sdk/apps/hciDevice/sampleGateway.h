@@ -56,6 +56,14 @@
 /**********************************************************************
  * TYPEDEFS
  */
+
+typedef struct{
+	u8 keyType; /* ERTIFICATION_KEY or MASTER_KEY key for touch-link or distribute network
+	 	 	 	 SS_UNIQUE_LINK_KEY or SS_GLOBAL_LINK_KEY for distribute network */
+	u8 key[16];	/* the key used */
+}app_linkKey_info_t;
+
+
 typedef struct{
 	ev_timer_event_t *timerLedEvt;
 	u32 keyPressedTime;
@@ -67,6 +75,11 @@ typedef struct{
 	u8 	times;		//blink times
 	u8  state;
 	u8	keyPressed;
+
+	bool bdbFindBindFlg;
+	bool lightAttrsChanged;
+
+	app_linkKey_info_t tcLinkKey;
 }app_ctx_t;
 
 /**
@@ -79,6 +92,7 @@ typedef struct{
 	u8	hwVersion;
 	u8	manuName[ZCL_BASIC_MAX_LENGTH];
 	u8	modelId[ZCL_BASIC_MAX_LENGTH];
+	u8	swBuildId[ZCL_BASIC_MAX_LENGTH];
 	u8	powerSource;
 	u8	deviceEnable;
 }zcl_basicAttr_t;
@@ -211,6 +225,11 @@ bool sampleGW_tcJoinIndHandler(zdo_tc_join_ind_t *pTcJoinInd);
 void sampleGW_tcFrameCntReachedHandler(void);
 
 void sampleGW_dataSendConfirm(void *arg);
+
+void zcl_sampleLightAttrsInit(void);
+nv_sts_t zcl_onOffAttr_save(void);
+nv_sts_t zcl_levelAttr_save(void);
+nv_sts_t zcl_colorCtrlAttr_save(void);
 
 #if AF_TEST_ENABLE
 void afTest_rx_handler(void *arg);

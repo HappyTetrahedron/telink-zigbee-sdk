@@ -58,6 +58,7 @@
 #include "app_ui.h"
 #if ZBHCI_EN
 #include "zbhci.h"
+#include "sampleLightCtrl.h"
 #endif
 
 
@@ -174,6 +175,10 @@ void user_app_init(void)
 	/* A sample of AF data handler. */
 	af_endpointRegister(SAMPLE_TEST_ENDPOINT, (af_simple_descriptor_t *)&sampleTestDesc, afTest_rx_handler, afTest_dataSendConfirm);
 #endif
+
+	/* Initialize or restore attributes, this must before 'zcl_register()' */
+	zcl_sampleLightAttrsInit();
+	zcl_reportingTabInit();
 
 	/* Register ZCL specific cluster information */
 	zcl_register(SAMPLE_GW_ENDPOINT, SAMPLE_GW_CB_CLUSTER_NUM, (zcl_specClusterInfo_t *)g_sampleGwClusterList);

@@ -53,6 +53,7 @@
 #include "zcl_include.h"
 // #include "sampleLight.h"
 #include "sampleGateway.h"
+#include "sampleLightCtrl.h"
 #ifdef ZBHCI_EN
 #include "zbhci.h"
 #endif
@@ -139,6 +140,8 @@ void sampleLight_onoff(u8 cmd)
 			pOnOff->onTime = 0;
 		}
 	}
+
+	light_fresh();
 
 #ifdef ZCL_SCENE
 	zcl_sceneAttr_t *pScene = zcl_sceneAttrGet();

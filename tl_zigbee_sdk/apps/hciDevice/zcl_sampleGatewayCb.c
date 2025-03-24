@@ -55,6 +55,7 @@
 #include "app_ui.h"
 #if ZBHCI_EN
 #include "zbhci.h"
+#include "sampleLightCtrl.h"
 #endif
 
 /**********************************************************************
