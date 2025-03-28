@@ -52,6 +52,7 @@
 #include "zcl_include.h"
 #include "sampleGateway.h"
 #include "sampleLightCtrl.h"
+#include "app_ui.h"
 
 
 /**********************************************************************
@@ -133,7 +134,7 @@ void hwLight_init(void)
 	R_LIGHT_PWM_SET();
 	G_LIGHT_PWM_SET();
 	B_LIGHT_PWM_SET();
-	pwmInit(R_LIGHT_PWM_CHANNEL, 0);
+	pwmInit(R_LIGHT_PWM_CHANNEL, ZCL_LEVEL_ATTR_MAX_LEVEL * PWM_FULL_DUTYCYCLE);
 	pwmInit(G_LIGHT_PWM_CHANNEL, 0);
 	pwmInit(B_LIGHT_PWM_CHANNEL, 0);
 #else
@@ -159,6 +160,7 @@ void hwLight_onOffUpdate(u8 onOff)
 {
 	if(onOff){
 #if COLOR_RGB_SUPPORT
+		led_on(LED_DEBUG);
 		drv_pwm_start(R_LIGHT_PWM_CHANNEL);
 		drv_pwm_start(G_LIGHT_PWM_CHANNEL);
 		drv_pwm_start(B_LIGHT_PWM_CHANNEL);
@@ -170,6 +172,7 @@ void hwLight_onOffUpdate(u8 onOff)
 #endif
 	}else{
 #if COLOR_RGB_SUPPORT
+		led_off(LED_DEBUG);
 		drv_pwm_stop(R_LIGHT_PWM_CHANNEL);
 		drv_pwm_stop(G_LIGHT_PWM_CHANNEL);
 		drv_pwm_stop(B_LIGHT_PWM_CHANNEL);
@@ -337,6 +340,7 @@ void hsvToRGB(u8 hue, u8 saturation, u8 level, u8 *R, u8 *G, u8 *B)
  */
 void hwLight_colorUpdate_HSV2RGB(u8 hue, u8 saturation, u8 level)
 {
+
 #if COLOR_RGB_SUPPORT
 	u8 R = 0;
 	u8 G = 0;

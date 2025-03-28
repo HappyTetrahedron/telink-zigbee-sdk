@@ -74,34 +74,34 @@ extern "C" {
 //LED
 #if defined COLOR_RGB_SUPPORT && (COLOR_RGB_SUPPORT == 1)
 
-#define LED_R						GPIO_PD3 // PWM1_N
-// #define LED_R						GPIO_PD4 // ATTEMPT TO USE ONBOARD LED
-#define LED_G						GPIO_PC4 // PWM0_N I think
-#define LED_B						GPIO_PC0 // PWM4_N I think
+#define LED_R						GPIO_PD2 // PWM3
+#define LED_G						GPIO_PD3 // PWM1_N
+#define LED_B						GPIO_PB5 // PWM5
 
-//// Attempt to use onboard LED as R chan
-//#define PWM_R_CHANNEL				2//PWM2_N
-//#define PWM_R_CHANNEL_SET()			do{	\
-//										gpio_set_func(LED_R, AS_PWM2_N); 	\
-//										drv_pwm_n_invert(PWM_R_CHANNEL); 	\
-//									}while(0)
-
-#define PWM_R_CHANNEL				1//PWM1_N
+/*
+// Attempt to use onboard LED as R chan
+#define PWM_R_CHANNEL				2//PWM2_N
 #define PWM_R_CHANNEL_SET()			do{	\
-										gpio_set_func(LED_R, AS_PWM1_N); 	\
+										gpio_set_func(LED_R, AS_PWM2_N); 	\
 										drv_pwm_n_invert(PWM_R_CHANNEL); 	\
 									}while(0)
 
-#define PWM_G_CHANNEL				0//PWM0_N
+ */
+
+#define PWM_R_CHANNEL				3//PWM3
+#define PWM_R_CHANNEL_SET()			do{	\
+										gpio_set_func(LED_R, AS_PWM3); 	\
+									}while(0)
+
+#define PWM_G_CHANNEL				1//PWM1_N
 #define PWM_G_CHANNEL_SET()			do{	\
-										gpio_set_func(LED_G, AS_PWM0_N); 	\
+										gpio_set_func(LED_G, AS_PWM1_N); 	\
 										drv_pwm_n_invert(PWM_G_CHANNEL); 	\
 									}while(0)
 
-#define PWM_B_CHANNEL				4//PWM4_N
+#define PWM_B_CHANNEL				5//PWM5
 #define PWM_B_CHANNEL_SET()			do{	\
-										gpio_set_func(LED_B, AS_PWM4_N); 	\
-										drv_pwm_n_invert(PWM_B_CHANNEL); 	\
+										gpio_set_func(LED_B, AS_PWM5); 	\
 									}while(0)
 
 #define R_LIGHT_PWM_CHANNEL			PWM_R_CHANNEL
@@ -122,6 +122,7 @@ extern "C" {
 #define PD4_OUTPUT_ENABLE			1
 #define PD4_INPUT_ENABLE			0
 
+#define LED_DEBUG                   GPIO_PD4
 #define LED_POWER					LED_W
 #define LED_PERMIT					NULL
 
